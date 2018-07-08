@@ -1,0 +1,89 @@
+import 'package:flutter/material.dart';
+import 'base_page.dart';
+import 'listview_demo.dart';
+import 'widght_demo.dart';
+import 'widget_material.dart';
+import 'gesture_demo.dart';
+import 'stateful_demo.dart';
+
+final _biggerFont = const TextStyle(fontSize: 18.0);
+
+class HomePage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return new HomePageState();
+  }
+}
+
+class HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("Flutter练习"),
+      ),
+      body: _buildHomeListView(),
+    );
+  }
+
+  Widget _buildHomeListView() {
+    final _pages = <String>[];
+    _pages.add("ListView");
+    _pages.add("Widget");
+    _pages.add("MaterialWidget");
+    _pages.add("Gesture");
+    _pages.add("Stateful");
+
+    final _tiles = _pages.map((page) {
+      return new ListTile(
+        title: new Text(
+          page,
+          style: _biggerFont,
+        ),
+        onTap: () {
+          _pushHomeRouter(page);
+        },
+      );
+    });
+    final _divided = ListTile
+        .divideTiles(
+          context: context,
+          tiles: _tiles,
+        )
+        .toList();
+    return new ListView(
+      children: _divided,
+    );
+  }
+
+  void _pushHomeRouter(page) {
+    switch (page) {
+      case "ListView":
+        Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
+          return new RandonWords();
+        }));
+        break;
+      case "Widget":
+        Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
+          return new MyScaffold();
+        }));
+        break;
+      case "MaterialWidget":
+        Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
+          return new MaterialWidget();
+        }));
+        break;
+      case "Gesture":
+        Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
+          return new GestureDemo();
+        }));
+        break;
+      case "Stateful":
+        Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
+          return new BasePage(title: "Stateful", body: Counter2());
+        }));
+        break;
+      default:
+    }
+  }
+}
