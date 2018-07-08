@@ -5,6 +5,7 @@ import 'widght_demo.dart';
 import 'widget_material.dart';
 import 'gesture_demo.dart';
 import 'stateful_demo.dart';
+import 'shopping_cart.dart';
 
 final _biggerFont = const TextStyle(fontSize: 18.0);
 
@@ -33,6 +34,7 @@ class HomePageState extends State<HomePage> {
     _pages.add("MaterialWidget");
     _pages.add("Gesture");
     _pages.add("Stateful");
+    _pages.add("ShoppingCart");
 
     final _tiles = _pages.map((page) {
       return new ListTile(
@@ -81,6 +83,19 @@ class HomePageState extends State<HomePage> {
       case "Stateful":
         Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
           return new BasePage(title: "Stateful", body: Counter2());
+        }));
+        break;
+      case "ShoppingCart":
+        Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
+          return new BasePage(
+              title: "ShoppingCart",
+              body: ShoppingList(
+                products: <Product>[
+                  new Product(name: "猪肉"),
+                  new Product(name: "牛肉"),
+                  new Product(name: "鸡肉"),
+                ],
+              ));
         }));
         break;
       default:
