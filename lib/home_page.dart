@@ -8,6 +8,7 @@ import 'stateful_demo.dart';
 import 'shopping_cart.dart';
 import 'layout_demo.dart';
 import 'interaction_demo.dart';
+import 'animation_demo.dart';
 
 final _biggerFont = const TextStyle(fontSize: 18.0);
 
@@ -34,11 +35,12 @@ class HomePageState extends State<HomePage> {
     _pages.add("ListView");
     _pages.add("Widget");
     _pages.add("MaterialWidget");
-    _pages.add("Gesture");
     _pages.add("Stateful");
     _pages.add("ShoppingCart");
     _pages.add("Layout");
     _pages.add("Interaction");
+    _pages.add("Gesture");
+    _pages.add("Animation");
 
     final _tiles = _pages.map((page) {
       return new ListTile(
@@ -112,6 +114,12 @@ class HomePageState extends State<HomePage> {
           return new BasePage(title: "Interaction", body: InteractionDemo());
         }));
         break;
+      case "Animation":
+        Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
+          return new AnimationDemo();
+        }));
+        break;
+      
       default:
     }
   }
